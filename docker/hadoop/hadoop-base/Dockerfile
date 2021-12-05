@@ -2,7 +2,7 @@ FROM openjdk:8-jdk-slim
 LABEL creator="MarcLamberti"
 LABEL maintainer="lkellermann"
 
-ENV HADOOP_VERSION=3.2.2
+ENV HADOOP_VERSION=3.1.2
 ENV HADOOP_HOME=/opt/hadoop
 ENV HADOOP_CONF_DIR=/etc/hadoop
 ENV USER=root
