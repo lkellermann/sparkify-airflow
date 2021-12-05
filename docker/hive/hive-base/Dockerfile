@@ -16,7 +16,7 @@ RUN apt-get install -yqq \
     tar xvf hive.tar.gz && \
     rm hive.tar.gz && \
     mv apache-hive-${HIVE_VERSION}-bin hive && \
-    wget -O ${HIVE_HOME}/lib/postgresql-jdbc.jar https://jdbc.postgresql.org/download/postgresql-42.2.24.jar && \
+    wget -O ${HIVE_HOME}/lib/postgresql-jdbc.jar https://jdbc.postgresql.org/download/postgresql-42.3.1.jar && \
     apt-get --purge remove -yqq wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
