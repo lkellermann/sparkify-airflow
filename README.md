@@ -46,7 +46,7 @@ Then you should be able to run the `sparkify-airflow/start.sh` script and use th
 |:--------:	|:----------------------:	|:-------:	|:--------:	|:----------:	|
 |  Airflow 	|  http://localhost:8080 	| airflow 	|  airflow 	|      -     	|
 |    Hue   	| http://localhost:32762 	|    -    	|     -    	|      -     	|
-|  Adminer 	| http://localhost:32767 	| airflow 	|  airflow 	| airflow_db 	|
+|  Adminer 	| http://postgres:5432 	| airflow 	|  airflow 	| airflow_db 	|
 
 # Acknowledgement
 - [marclamberti](https://github.com/marclamberti): idea and initial work
