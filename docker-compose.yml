@@ -126,7 +126,6 @@ services:
       retries: 10
 
   hive-server:
-    # csv2hdp.sh -f ./csv2hdp/staging/sample.csv -d default
     build: ./docker/hive/hive-server
     restart: always
     container_name: hive-server
