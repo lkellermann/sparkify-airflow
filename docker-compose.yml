@@ -1,9 +1,9 @@
 version: '3.5'
 services:
 
-######################################################
-# DATABASE SERVICE
-######################################################
+  ######################################################
+  # DATABASE SERVICE
+  ######################################################
   postgres:
     build: './docker/postgres'
     restart: always
@@ -11,19 +11,27 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     ports:
       - "32769:5432"
-    #volumes:
-      #- ./mnt/postgres:/var/lib/postgresql/data/pgdata
+
     environment:
       - POSTGRES_USER=airflow
       - POSTGRES_PASSWORD=airflow
       - POSTGRES_DB=airflow_db
-      #- PGDATA=/var/lib/postgresql/data/pgdata
+
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "airflow_db", "-U", "airflow" ]
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "airflow_db",
+          "-U",
+          "airflow"
+        ]
       timeout: 45s
       interval: 10s
       retries: 10
@@ -35,8 +43,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     ports:
       - "32767:9000"
     environment:
@@ -49,9 +57,9 @@ services:
       interval: 10s
       retries: 10
 
-######################################################
-# HADOOP SERVICES
-######################################################
+  ######################################################
+  # HADOOP SERVICES
+  ######################################################
   namenode:
     build: ./docker/hadoop/hadoop-namenode
     restart: always
@@ -59,8 +67,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     ports:
       - "32763:9870"
     volumes:
@@ -80,8 +88,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     depends_on:
       - namenode
     volumes:
@@ -101,8 +109,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     depends_on:
       - namenode
       - datanode
@@ -124,10 +132,12 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     depends_on:
       - hive-metastore
+    volumes:
+      - ./csv2hdp:/opt/csv2hdp
     environment:
       - SERVICE_PRECONDITION=hive-metastore:9083
     ports:
@@ -146,8 +156,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     depends_on:
       - hive-server
     environment:
@@ -165,8 +175,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     depends_on:
       - hive-server
       - postgres
@@ -182,9 +192,9 @@ services:
       interval: 10s
       retries: 10
 
-######################################################
-# SPARK SERVICES
-######################################################
+  ######################################################
+  # SPARK SERVICES
+  ######################################################
   spark-master:
     build: ./docker/spark/spark-master
     restart: always
@@ -192,8 +202,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     ports:
       - "32766:8082"
       - "32765:7077"
@@ -211,8 +221,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     depends_on:
       - spark-master
     ports:
@@ -233,8 +243,8 @@ services:
     logging:
       driver: "json-file"
       options:
-          max-file: "5"
-          max-size: "10m"
+        max-file: "5"
+        max-size: "10m"
     depends_on:
       - spark-worker
     ports:
@@ -249,9 +259,9 @@ services:
       interval: 10s
       retries: 10
 
-######################################################
-# AIRFLOW
-######################################################
+  ######################################################
+  # AIRFLOW
+  ######################################################
 
   airflow:
     build: ./docker/airflow

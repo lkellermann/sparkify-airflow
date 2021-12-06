@@ -1,0 +1,4 @@
+[submodule "csv2hdp"]
+path = csv2hdp
+url = git@github.com:lkellermann/csv2hdp.git
+branch = main
