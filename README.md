@@ -5,7 +5,7 @@
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
+- [Acknowledgements](#ack)
 
 ## About <a name = "about"></a>
 
@@ -46,7 +46,7 @@ Then you should be able to run the `sparkify-airflow/start.sh` script and use th
 |:--------:	|:----------------------:	|:-------:	|:--------:	|:----------:	|
 |  Airflow 	|  http://localhost:8080 	| airflow 	|  airflow 	|      -     	|
 |    Hue   	| http://localhost:32762 	|    -    	|     -    	|      -     	|
-|  Adminer 	| http://postgres:5432 	| airflow 	|  airflow 	| airflow_db 	|
+|  Adminer 	| http://localhost:32767 	| airflow 	|  airflow 	| airflow_db@postgres:5432 	|
 
 ## Available Scripts
 ### `csv2hdp.sh`
@@ -68,5 +68,5 @@ csv2hdp.sh --file sample.csv --database default
 After that you should see the `sample` table at `default` database as seen below.
 ![hue-csv-sample](img/hue-csv-sample.png)
 
-# Acknowledgement
-- [marclamberti](https://github.com/marclamberti): idea and initial work
+# Acknowledgement <a name = "ack"></a>
+- [marclamberti](https://github.com/marclamberti) - idea and initial work
